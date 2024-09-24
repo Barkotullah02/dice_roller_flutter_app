@@ -36,9 +36,7 @@ class _DicePageState extends State<DicePage> {
             flex: 1,
             child: IconButton(
               onPressed: () {
-                setState(() {
-                  leftDice = Random.secure().nextInt(6) + 1;
-                });
+                changeDice();
               },
               icon: Image.asset('images/dice$leftDice.png'),
             ),
@@ -47,9 +45,7 @@ class _DicePageState extends State<DicePage> {
             flex: 1,
             child: IconButton(
               onPressed: () {
-                setState(() {
-                  rightDice = Random.secure().nextInt(6) + 1;
-                });
+                changeDice();
               },
               icon: Image.asset('images/dice$rightDice.png'),
             ),
@@ -57,6 +53,14 @@ class _DicePageState extends State<DicePage> {
         ],
       ),
     );
+  }
+
+
+  void changeDice(){
+    setState(() {
+      leftDice = Random.secure().nextInt(6) + 1;
+      rightDice = Random.secure().nextInt(6) + 1;
+    });
   }
 }
 
