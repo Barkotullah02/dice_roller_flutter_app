@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,16 +11,22 @@ void main() {
           title: const Text('Dicee'),
           backgroundColor: Colors.red,
         ),
-        body: const DicePage(),
+        body: DicePage(),
       ),
       debugShowCheckedModeBanner: false,
     ),
   );
 }
 
-class DicePage extends StatelessWidget {
+class DicePage extends StatefulWidget {
   const DicePage({super.key});
 
+  @override
+  State<DicePage> createState() => _DicePageState();
+}
+
+class _DicePageState extends State<DicePage> {
+  int leftDice = 1, rightDice = 1;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -26,16 +34,24 @@ class DicePage extends StatelessWidget {
         children: [
           Expanded(
             flex: 1,
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Image.asset('images/dice1.png'),
+            child: IconButton(
+              onPressed: () {
+                setState(() {
+                  leftDice = Random.secure().nextInt(6) + 1;
+                });
+              },
+              icon: Image.asset('images/dice$leftDice.png'),
             ),
           ),
           Expanded(
             flex: 1,
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Image.asset('images/dice1.png'),
+            child: IconButton(
+              onPressed: () {
+                setState(() {
+                  rightDice = Random.secure().nextInt(6) + 1;
+                });
+              },
+              icon: Image.asset('images/dice$rightDice.png'),
             ),
           ),
         ],
@@ -43,3 +59,4 @@ class DicePage extends StatelessWidget {
     );
   }
 }
+
