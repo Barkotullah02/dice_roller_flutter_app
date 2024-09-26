@@ -11,7 +11,7 @@ void main() {
           title: const Text('Dicee'),
           backgroundColor: Colors.red,
         ),
-        body: DicePage(),
+        body: const DicePage(),
       ),
       debugShowCheckedModeBanner: false,
     ),
